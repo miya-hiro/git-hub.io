@@ -210,12 +210,7 @@ if(!empty($_POST)){
         $_POST = array();
 }
 
-var_dump($_SESSION['mylv']);
-var_dump($_SESSION['mywp']);
-var_dump($_SESSION['myep']);
-var_dump($_SESSION['myhp']);
-var_dump($_SESSION['myimg']);
-var_dump($_SESSION['w_full']);
+
 ?>
 
 <!DOCTYPE html>

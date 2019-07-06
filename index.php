@@ -156,7 +156,7 @@ if(!empty($_POST)){
             // 水をあげすぎた場合
           if($_SESSION['mylv'] === 5 && $_SESSION['mywp'] >= 40){
                 $_SESSION['w_full'] = 'true';
-                $_SESSION['myimg'] = 'img/karekinoko.png';
+                $_SESSION['myimg'] = 'karekinoko.png';
                 $_SESSION['history'] = '水をあげすぎて腐ってしまった！ <br>';  
                 // gameOver();
             }
@@ -165,7 +165,7 @@ if(!empty($_POST)){
             // ひりょうをあげすぎた場合
             if($_SESSION['mylv'] === 5 && $_SESSION['myep'] >= 40){
                 $_SESSION['w_full'] = 'true';
-                $_SESSION['myimg'] = 'img/hutokinoko.png';
+                $_SESSION['myimg'] = 'hutokinoko.png';
                 $_SESSION['history'] = '太りすぎて腐ってしまった！ <br>';  
             }
         }
@@ -174,7 +174,7 @@ if(!empty($_POST)){
         
         if($_SESSION['mylv'] <= 0){
             $_SESSION['w_full'] = 'true';
-            $_SESSION['myimg'] = 'img/karekinoko.png';
+            $_SESSION['myimg'] = 'karekinoko.png';
             $_SESSION['history'] = '干からびてしまった！ <br>';  
         }
       }
@@ -182,11 +182,11 @@ if(!empty($_POST)){
      //($_SESSION['w_full'] = 'false')とすると代入になってしまう！！
      if($_SESSION['w_full'] === 'false'){ 
           if($_SESSION['mylv'] >= 3.5 && $_SESSION['mylv'] < 5){
-            $_SESSION['myimg'] =  'img/kinokolv4.png'; 
+            $_SESSION['myimg'] =  'kinokolv4.png'; 
           } else if($_SESSION['mylv'] >= 5 && $_SESSION['mylv'] < 8){
-            $_SESSION['myimg'] =  'img/kinokolv7.png'; 
+            $_SESSION['myimg'] =  'kinokolv7.png'; 
           } else if($_SESSION['mylv'] >= 8 && $_SESSION['mylv'] < 10){
-            $_SESSION['myimg'] =  'img/kinokolv8.png'; 
+            $_SESSION['myimg'] =  'kinokolv8.png'; 
           }
       }
 
@@ -195,15 +195,15 @@ if(!empty($_POST)){
         if($_SESSION['mylv'] >= 10){
             if($_SESSION['mywp'] && $_SESSION['myep']<= $_SESSION['myhp']){
                $_SESSION['history'] = 'おめでとうございます！<br>きのこの妖精に育ちました！';
-               $_SESSION['myimg'] =  'img/yousei.png'; 
+               $_SESSION['myimg'] =  'yousei.png'; 
                $_SESSION['goal'] = 'true'; 
             } else if($_SESSION['myhp'] && $_SESSION['mywp'] <= $_SESSION['myep']){
                $_SESSION['history'] = 'おめでとうございます！<br>太ったきのこに育ちました！';
-               $_SESSION['myimg'] =  'img/huto.png'; 
+               $_SESSION['myimg'] =  'huto.png'; 
                $_SESSION['goal'] = 'true'; 
             } else {
                $_SESSION['history'] = 'おめでとうございます！<br>美味しそうなきのこに育ちました！';
-               $_SESSION['myimg'] =  'img/normal.png'; 
+               $_SESSION['myimg'] =  'normal.png'; 
                $_SESSION['goal'] = 'true'; 
             }
         }
@@ -239,7 +239,7 @@ if(!empty($_POST)){
           </form>  
         </div>
         <div class="main">
-         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'img/kinoko.png'; ?>" class="buruburu">
+         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'kinoko.png'; ?>" class="buruburu">
         </div>
       </div>
       <div class="history site-width">
@@ -254,7 +254,7 @@ if(!empty($_POST)){
           </form>  
         </div>
         <div class="main">
-         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'img/kinoko.png'; ?>" class="huwahuwa">
+         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'kinoko.png'; ?>" class="huwahuwa">
         </div>
       </div>
       <div class="history site-width">
@@ -275,7 +275,7 @@ if(!empty($_POST)){
          </form>  
         </div>
         <div class="main">
-         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'img/kinoko.png'; ?>" class="huwahuwa">
+         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'kinoko.png'; ?>" class="huwahuwa">
         </div>
       </div>
       

@@ -246,6 +246,7 @@ if(!empty($_POST)){
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic&display=swap" rel="stylesheet">   
     </head>
     <body>
+      
     <h1 style="text-align:center;">ゲーム！きのこちゃん</h1>
       <?php if(empty($_SESSION)){ ?>
         <div class="top" style="background:#72c6c7; height:150px; width:400px; margin-left:auto; margin-right:auto;">
@@ -307,6 +308,7 @@ if(!empty($_POST)){
         <p><?php echo (!empty($_SESSION['history'])) ? $_SESSION['history'] : ''; ?></p>
       </div>
       <?php } ?>
+      </div>  
     </body>
 </html>
 

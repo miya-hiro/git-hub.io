@@ -19,7 +19,7 @@ define("MY_LV", 1);
 define("MY_WP", 0);
 define("MY_EP", 0);
 define("MY_HP", 0);
-define("MY_IMG", 'img/kinoko.png' );
+define("MY_IMG", 'kinoko.png' );
 
 // アイテム格納用
 $items = array();

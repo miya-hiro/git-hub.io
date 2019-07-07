@@ -23,6 +23,7 @@ define("MY_IMG", 'kinoko.png' );
 
 // アイテム格納用
 $items = array();
+$words = array();
 
 // クラス（設計図）の作成(１文字目を大文字で)
 class Item{
@@ -51,7 +52,7 @@ class Item{
     $_SESSION['mywp'] += $this->w_p ;
     $_SESSION['myep'] += $this->e_p ;
     $_SESSION['myhp'] += $this->h_p;
-    $_SESSION['history'] .= 'きのこ：「 ❤ 」<br>';  
+    sayWord();
    }
   // セッター
     public function setlv($num){
@@ -103,11 +104,27 @@ class NegaItem extends Item{
     }
 }
 
+//キノコの(良い)セリフクラス
+class Word{
+    protected $word;
+  public function __construct($word){
+       $this->word = $word;
+  }
+  public function getWord(){
+    return $this->word;
+  }
+}
+
 // クラスを造ったらインスタンス生成
 $items[] = new Item('お水', 1, 10, 0, 0 ,'お水をあげた');
-$items[] = new Item('肥料', 1, 0, 10, 0 ,'肥料をあげた');
+$items[] = new Item('肥料', 1, 0, 10, 0 ,'ひりょうをあげた');
 $items[] = new Item('言葉', 0.5, 0, 0, 10, 'ことばをかけた');
 $items[] = new NegaItem('no', -1, 0, 0, 0,'何もしなかった');
+
+$words[] = new Word('　❤❤　');
+$words[] = new Word('ありがと！');
+$words[] = new Word('うれしいな');
+
 
 function createItem(){
     global $items;
@@ -121,6 +138,13 @@ function createItem(){
         $_SESSION['item'] = $items[3];
     }
 }
+
+function sayWord(){
+    global $words;
+    $word = $words[mt_rand(0,2)];
+    $_SESSION['history'] .= 'きのこ 「 '.$word->getWord().' 」<br>';
+}
+
 function init(){
     $_SESSION['history'] .= '大事に育てましょう！<br>';
     $_SESSION['mylv'] = MY_LV;
@@ -210,7 +234,6 @@ if(!empty($_POST)){
         $_POST = array();
 }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -239,7 +262,7 @@ if(!empty($_POST)){
           </form>  
         </div>
         <div class="main">
-         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'kinoko.png'; ?>" class="buruburu">
+         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'img/kinoko.png'; ?>" class="buruburu">
         </div>
       </div>
       <div class="history site-width">
@@ -254,7 +277,7 @@ if(!empty($_POST)){
           </form>  
         </div>
         <div class="main">
-         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'kinoko.png'; ?>" class="huwahuwa">
+         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'img/kinoko.png'; ?>" class="huwahuwa">
         </div>
       </div>
       <div class="history site-width">
@@ -270,12 +293,12 @@ if(!empty($_POST)){
              <input type="submit" name="energy" value="ひりょう"> 
              <input type="submit" name="kotoba" value="ことば"> 
              <input type="submit" name="no" value="何もしない"> 
-             <input type="submit" name="start" value="リセット"> 
+             <input type="submit" name="start" value="リセット" class="reset-btn"> 
             </div>
          </form>  
         </div>
         <div class="main">
-         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'kinoko.png'; ?>" class="huwahuwa">
+         <img src="<?php echo (!empty($_SESSION['myimg'])) ? $_SESSION['myimg'] : 'img/kinoko.png'; ?>" class="huwahuwa">
         </div>
       </div>
       

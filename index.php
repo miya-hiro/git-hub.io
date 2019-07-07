@@ -241,6 +241,7 @@ if(!empty($_POST)){
     <head>
     <meta charset="utf-8">
     <title>ゲーム！きのこちゃん</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">  
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic&display=swap" rel="stylesheet">   
     </head>

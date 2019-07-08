@@ -156,6 +156,15 @@ top{
         h1{
             font-size: 8vw;
         }
+        .site-width{
+            width:350px;
+        }
+        .kaisetu {
+            box-sizing:border-box;
+            padding: 10px;
+            width:auto;
+            font-size: 4.5vw;
+        }
         .main-wrap{
             width: 350px; 
             height: auto;
@@ -170,8 +179,15 @@ top{
              width:95%;
          }
          .main{
-             width: 60%;
+             width: 55%;
+             float:left;
          }
+         img {
+            max-width:240px;
+            margin-left: auto;
+            margin-right: auto;
+        
+         }        
          .history{
              width: 350px;
              font-size: 6vw;

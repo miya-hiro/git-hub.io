@@ -19,7 +19,7 @@ define("MY_LV", 1);
 define("MY_WP", 0);
 define("MY_EP", 0);
 define("MY_HP", 0);
-define("MY_IMG", 'kinoko.png' );
+define("MY_IMG", 'img/kinoko.png' );
 
 // アイテム格納用
 $items = array();
@@ -122,6 +122,7 @@ $items[] = new Item('言葉', 0.5, 0, 0, 10, 'ことばをかけた');
 $items[] = new NegaItem('no', -1, 0, 0, 0,'何もしなかった');
 
 $words[] = new Word('　❤❤　');
+$words[] = new Word('　 ❤ 　');
 $words[] = new Word('ありがと！');
 $words[] = new Word('うれしいな');
 
@@ -141,7 +142,7 @@ function createItem(){
 
 function sayWord(){
     global $words;
-    $word = $words[mt_rand(0,2)];
+    $word = $words[mt_rand(0,3)];
     $_SESSION['history'] .= 'きのこ 「 '.$word->getWord().' 」<br>';
 }
 
@@ -168,8 +169,12 @@ if(!empty($_POST)){
     $noFlg = (!empty($_POST['no'])) ? true : false;
     error_log('POSTされた！');
     debug('ポストの中身：'.print_r($_POST,true));
-   
-    if($startFlg){
+   var_dump($startFlg);
+   var_dump($waterFlg);
+   var_dump($energyFlg);
+   var_dump($kotobaFlg);
+
+   if($startFlg){
         $_SESSION['history'] = 'ゲームスタート！<br>';
         init();
     } else {
@@ -180,60 +185,72 @@ if(!empty($_POST)){
             // 水をあげすぎた場合
           if($_SESSION['mylv'] === 5 && $_SESSION['mywp'] >= 40){
                 $_SESSION['w_full'] = 'true';
-                $_SESSION['myimg'] = 'karekinoko.png';
+                $_SESSION['myimg'] = 'img/karekinoko.png';
                 $_SESSION['history'] = '水をあげすぎて腐ってしまった！ <br>';  
                 // gameOver();
             }
-        }       
+          }       
         if($energyFlg) {
             // ひりょうをあげすぎた場合
             if($_SESSION['mylv'] === 5 && $_SESSION['myep'] >= 40){
                 $_SESSION['w_full'] = 'true';
-                $_SESSION['myimg'] = 'hutokinoko.png';
+                $_SESSION['myimg'] = 'img/hutokinoko.png';
                 $_SESSION['history'] = '太りすぎて腐ってしまった！ <br>';  
             }
-        }
-        // if($kotobaFlg) {
-        // }
+         }
         
+         if($kotobaFlg) {
+            //ことばをかけすぎた場合 
+            if($_SESSION['myhp'] === 100){
+               $_SESSION['w_full'] = 'true';
+               $_SESSION['myimg'] = 'img/karekinoko.png';
+               $_SESSION['history'] = 'つかれて枯れてしまった！ <br>';  
+           }
+         }
+ 
         if($_SESSION['mylv'] <= 0){
             $_SESSION['w_full'] = 'true';
-            $_SESSION['myimg'] = 'karekinoko.png';
+            $_SESSION['myimg'] = 'img/karekinoko.png';
             $_SESSION['history'] = '干からびてしまった！ <br>';  
         }
       }
      // lvに合わせて成長させる
      //($_SESSION['w_full'] = 'false')とすると代入になってしまう！！
      if($_SESSION['w_full'] === 'false'){ 
-          if($_SESSION['mylv'] >= 3.5 && $_SESSION['mylv'] < 5){
-            $_SESSION['myimg'] =  'kinokolv4.png'; 
-          } else if($_SESSION['mylv'] >= 5 && $_SESSION['mylv'] < 8){
-            $_SESSION['myimg'] =  'kinokolv7.png'; 
+          if($_SESSION['mylv'] >= 3.5 && $_SESSION['mylv'] < 5.5){
+            $_SESSION['myimg'] =  'img/kinokolv4.png'; 
+          } else if($_SESSION['mylv'] >= 5.5 && $_SESSION['mylv'] < 8){
+            $_SESSION['myimg'] =  'img/kinokolv7.png'; 
           } else if($_SESSION['mylv'] >= 8 && $_SESSION['mylv'] < 10){
-            $_SESSION['myimg'] =  'kinokolv8.png'; 
+            $_SESSION['myimg'] =  'img/kinokolv8.png'; 
           }
       }
 
-
      // lvが１０以上になったらクリア
         if($_SESSION['mylv'] >= 10){
-            if($_SESSION['mywp'] && $_SESSION['myep']<= $_SESSION['myhp']){
+            if($_SESSION['mywp'] <= $_SESSION['myhp'] && $_SESSION['myep'] <= $_SESSION['myhp']){
                $_SESSION['history'] = 'おめでとうございます！<br>きのこの妖精に育ちました！';
-               $_SESSION['myimg'] =  'yousei.png'; 
+               $_SESSION['myimg'] =  'img/yousei.png'; 
                $_SESSION['goal'] = 'true'; 
-            } else if($_SESSION['myhp'] && $_SESSION['mywp'] <= $_SESSION['myep']){
+            } else if($_SESSION['myhp'] <= $_SESSION['myep'] && $_SESSION['mywp'] <= $_SESSION['myep']){
                $_SESSION['history'] = 'おめでとうございます！<br>太ったきのこに育ちました！';
-               $_SESSION['myimg'] =  'huto.png'; 
+               $_SESSION['myimg'] =  'img/huto.png'; 
                $_SESSION['goal'] = 'true'; 
             } else {
                $_SESSION['history'] = 'おめでとうございます！<br>美味しそうなきのこに育ちました！';
-               $_SESSION['myimg'] =  'normal.png'; 
+               $_SESSION['myimg'] =  'img/normal.png'; 
                $_SESSION['goal'] = 'true'; 
             }
         }
         $_POST = array();
 }
 
+var_dump($_SESSION['mylv']);
+var_dump($_SESSION['mywp']);
+var_dump($_SESSION['myep']);
+var_dump($_SESSION['myhp']);
+var_dump($_SESSION['myimg']);
+var_dump($_SESSION['w_full']);
 ?>
 
 <!DOCTYPE html>
@@ -241,23 +258,28 @@ if(!empty($_POST)){
     <head>
     <meta charset="utf-8">
     <title>ゲーム！きのこちゃん</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">  
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic&display=swap" rel="stylesheet">   
     </head>
     <body>
-      
+    <div class="wrap">    
     <h1 style="text-align:center;">ゲーム！きのこちゃん</h1>
       <?php if(empty($_SESSION)){ ?>
-        <div class="top" style="background:#72c6c7; height:150px; width:400px; margin-left:auto; margin-right:auto;">
-          <h2 style="margin-top:60px; text-align:center;">GAME START ?</h2>
+     <div class="top site-width">
+       <div class="kaisetu"> 
+        <p><i class="fas fa-caret-right"></i> きのこちゃんのお世話をして、育ててあげましょう！</p>    
+        <p><i class="fas fa-caret-right"></i> きのこちゃんの成長エンドは３パターン！育て方をまちがえると枯れてしまうから気をつけて！</p>
+       </div> 
+          <!-- <h2 style="margin-top:60px; text-align:center;">GAME START ?</h2> -->
           <form method="post">
           <input type="submit" name="start" value="スタート！">
           </form> 
-        </div>  
+     </div>  
 <!-- レベル５の失敗ケース            -->
         <?php }else if( ($_SESSION['w_full']) === 'true'){ ?>
-    　<div class="site-width main-wrap"> 
+    <div class="site-width main-wrap"> 
         <div class="side-bar">
           <form method="post">
              <input type="submit" name="start" value="やりなおす"> 
@@ -272,7 +294,7 @@ if(!empty($_POST)){
       </div>
 <!-- ゴールした場合 -->
       <?php }else if(($_SESSION['goal']) === 'true'){ ?>
-        <div class="clearfix site-width main-wrap"> 
+        <div class="site-width main-wrap"> 
         <div class="side-bar">
           <form method="post">
              <input type="submit" name="start" value="もう一度する"> 

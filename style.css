@@ -179,11 +179,11 @@ top{
              width:95%;
          }
          .main{
-             width: 55%;
+             width: 50%;
              float:left;
          }
          img {
-            max-width:240px;
+            max-width:235px;
             margin-left: auto;
             margin-right: auto;
         

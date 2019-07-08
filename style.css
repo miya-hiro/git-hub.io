@@ -157,16 +157,18 @@ top{
             font-size: 8vw;
         }
         .site-width{
-            width:350px;
+            min-width:330px;
+            max-width: 360px;
         }
         .kaisetu {
             box-sizing:border-box;
             padding: 10px;
-            width:auto;
+            min-width:320;
+            max-width:350px;
             font-size: 4.5vw;
         }
         .main-wrap{
-            width: 350px; 
+            min-width: 330px; 
             height: auto;
             margin-left: auto;
             margin-right: auto;
@@ -179,17 +181,18 @@ top{
              width:95%;
          }
          .main{
-             width: 50%;
+             width:50%;
              float:left;
          }
          img {
-            max-width:235px;
+            max-width:240px;
             margin-left: auto;
             margin-right: auto;
         
          }        
          .history{
-             width: 350px;
+             /* text-align: center; */
+             width: 360px;
              font-size: 6vw;
          }
     } 

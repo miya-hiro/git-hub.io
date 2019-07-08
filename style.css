@@ -96,7 +96,7 @@ top{
      box-sizing: border-box;
      height: 120px;
      /* padding-top:10px; */
-     font-size: 24px;
+     font-size: 20px;
      font-weight: bold;
      color: #fdfcfb;
      text-align: center;
@@ -166,7 +166,9 @@ top{
             min-width:320;
             max-width:350px;
             font-size: 4.5vw;
-        }
+            margin-left:auto;
+            margin-right:auto;
+       }
         .main-wrap{
             min-width: 330px; 
             height: auto;
@@ -193,6 +195,5 @@ top{
          .history{
              /* text-align: center; */
              width: 360px;
-             font-size: 6vw;
          }
     } 

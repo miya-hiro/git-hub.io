@@ -241,7 +241,6 @@ if(!empty($_POST)){
         }
         $_POST = array();
 }
-
 ?>
 
 <!DOCTYPE html>

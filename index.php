@@ -169,10 +169,7 @@ if(!empty($_POST)){
     $noFlg = (!empty($_POST['no'])) ? true : false;
     error_log('POSTされた！');
     debug('ポストの中身：'.print_r($_POST,true));
-   var_dump($startFlg);
-   var_dump($waterFlg);
-   var_dump($energyFlg);
-   var_dump($kotobaFlg);
+ 
 
    if($startFlg){
         $_SESSION['history'] = 'ゲームスタート！<br>';
@@ -245,12 +242,6 @@ if(!empty($_POST)){
         $_POST = array();
 }
 
-var_dump($_SESSION['mylv']);
-var_dump($_SESSION['mywp']);
-var_dump($_SESSION['myep']);
-var_dump($_SESSION['myhp']);
-var_dump($_SESSION['myimg']);
-var_dump($_SESSION['w_full']);
 ?>
 
 <!DOCTYPE html>

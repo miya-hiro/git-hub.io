@@ -260,8 +260,8 @@ if(!empty($_POST)){
       <?php if(empty($_SESSION)){ ?>
      <div class="top site-width">
        <div class="kaisetu"> 
-        <p><i class="fas fa-caret-right"></i> きのこちゃんのお世話をして、育ててあげましょう！</p>    
-        <p><i class="fas fa-caret-right"></i> きのこちゃんの成長エンドは３パターン！<br>育て方をまちがえると枯れてしまうから気をつけて！</p>
+        <p><i class="fas fa-caret-right"></i>きのこちゃんのお世話をして、育ててあげましょう！</p>    
+        <p><i class="fas fa-caret-right"></i>きのこちゃんの成長エンドは３パターン！<br>育て方をまちがえると枯れてしまうから気をつけて！</p>
        </div> 
           <!-- <h2 style="margin-top:60px; text-align:center;">GAME START ?</h2> -->
           <form method="post">
